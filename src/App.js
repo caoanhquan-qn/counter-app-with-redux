@@ -1,26 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
 import './App.scss';
-import { decrement, increment, reset } from './redux/action';
+import { decrement, increment, reset, setDisabled } from './redux/action';
 
 function App() {
   const counter = useSelector((state) => state.counter);
+  const disabled = useSelector((state) => state.disabled);
   const dispatch = useDispatch();
-  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     if (counter === 0) {
-      setDisabled(true);
+      dispatch(setDisabled(true));
     } else {
-      setDisabled(false);
+      dispatch(setDisabled(false));
     }
-  }, [counter]);
+  }, [counter]); // eslint-disable-line react-hooks/exhaustive-deps
   const handleIncrement = () => {
-    dispatch(increment(counter));
+    dispatch(increment());
   };
   const handleDecrement = () => {
-    dispatch(decrement(counter));
+    dispatch(decrement());
   };
   const handleReset = () => {
     dispatch(reset());

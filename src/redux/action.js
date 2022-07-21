@@ -1,14 +1,12 @@
-export const increment = (counter) => {
+export const increment = () => {
   return {
     type: 'increment',
-    payload: counter + 1,
   };
 };
 
-export const decrement = (counter) => {
+export const decrement = () => {
   return {
     type: 'decrement',
-    payload: counter - 1,
   };
 };
 
@@ -16,5 +14,12 @@ export const reset = () => {
   return {
     type: 'reset',
     payload: 0,
+  };
+};
+
+export const setDisabled = (disabled) => {
+  return {
+    type: 'disable',
+    payload: disabled,
   };
 };
