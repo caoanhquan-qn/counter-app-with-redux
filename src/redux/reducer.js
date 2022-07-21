@@ -1,4 +1,4 @@
-const initialState = { counter: 0 };
+const initialState = { counter: 0, disabled: true };
 export const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'increment':
@@ -15,6 +15,11 @@ export const counterReducer = (state = initialState, action) => {
       return {
         ...state,
         counter: 0,
+      };
+    case 'disable':
+      return {
+        ...state,
+        disabled: action.payload,
       };
     default:
       return { ...state };

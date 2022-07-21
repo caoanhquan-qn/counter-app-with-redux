@@ -4,5 +4,3 @@ import { counterReducer } from './reducer';
 export const store = configureStore({
   reducer: counterReducer,
 });
-
-console.log(store.getState());
