@@ -1,10 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
 import './App.scss';
+import { decrement, increment, reset } from './redux/action';
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(true);
+
   useEffect(() => {
     if (counter === 0) {
       setDisabled(true);
@@ -13,13 +17,13 @@ function App() {
     }
   }, [counter]);
   const handleIncrement = () => {
-    setCounter(counter + 1);
+    dispatch(increment(counter));
   };
   const handleDecrement = () => {
-    setCounter(counter - 1);
+    dispatch(decrement(counter));
   };
   const handleReset = () => {
-    setCounter(0);
+    dispatch(reset());
   };
   return (
     <div className="App">
